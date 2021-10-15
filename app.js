@@ -6,7 +6,7 @@ const helper = require('./services/helper');
 function findHotelsNearby (lat, lng, radius = 2000) {
 
 	const hotelsNearby = [];
-	hotelService.getHotels().forEach((hotel) => {
+	hotelService.getHotels().forEach( (hotel) => {
 		const distance = helper.distance(lat, lng, hotel.latitude, hotel.longitude)
 
 		if (distance <= radius) {
@@ -24,10 +24,20 @@ function findHotelsNearby (lat, lng, radius = 2000) {
 	return JSON.stringify(hotelsNearby);
 }
 
-function findHotelNearbyWithBestOffer(lat, lng, radius, date) {
-    // TODO implement me
-    return null;
+function findHotelNearbyWithBestOffer (lat, lng, radius = 2000, date = Date.now()) {
+
+	const filteredPricesOffers = priceService.getPricesByFareType("STANDARD")
+	const filteredPricesOffersByDate = priceService.filterPricesOffersByDate(filteredPricesOffers);
+	let lowestPrice = 0;
+	filteredPrices.forEach( ( hotelOffers ) => {
+		// Loop and find the best prices
+	} )
+	// Array length > 1 ? use the distance helper 
+	const hotelsNearby = findHotelsNearby(lat, lng, radius)
+
+	return null;
 }
+
 
 module.exports = {
 	findHotelsNearby: findHotelsNearby,
